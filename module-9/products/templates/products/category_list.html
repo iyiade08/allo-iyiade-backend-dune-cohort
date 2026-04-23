@@ -1,0 +1,19 @@
+{% extends 'products/base.html' %} {% block content %}
+
+<h1>Categories</h1>
+<div class="row">
+  {% for category in categories %}
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <p class="card-title">{{category.name}}</p>
+        <span class="card-text">{{category.description}}</span>
+        <span class="card-text">
+          <strong>Number of Products: </strong>{{category.product_count}}
+        </span>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
