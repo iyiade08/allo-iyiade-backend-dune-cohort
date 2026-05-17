@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "ToriloShop API - Module 14",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 Get JWT Token",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"iyiade\",\n  \"password\": \"Adebimpe@08\"\n}"
+        },
+        "url": "http://127.0.0.1:8000/api/token/"
+      }
+    },
+    {
+      "name": "02 Unauthorized Request",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Product\",\n  \"price\": \"1000.00\",\n  \"stock\": 5,\n  \"category_id\": 1\n}"
+        },
+        "url": "http://127.0.0.1:8000/api/products/"
+      }
+    },
+    {
+      "name": "03 Authorized POST",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Authorization", "value": "Bearer <your_access_token>"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Product\",\n  \"price\": \"1000.00\",\n  \"stock\": 5,\n  \"category_id\": 1,\n  \"is_available\": true\n}"
+        },
+        "url": "http://127.0.0.1:8000/api/products/"
+      }
+    },
+    {
+      "name": "04 Pagination",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:8000/api/products/"
+      }
+    },
+    {
+      "name": "05 Filter By Category",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:8000/api/products/?category=1"
+      }
+    },
+    {
+      "name": "06 Search Products",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:8000/api/products/?search=laptop"
+      }
+    },
+    {
+      "name": "07 Ordering By Price",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:8000/api/products/?ordering=price"
+      }
+    },
+    {
+      "name": "08 Token Refresh",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"refresh\": \"<your_refresh_token>\"\n}"
+        },
+        "url": "http://127.0.0.1:8000/api/token/refresh/"
+      }
+    },
+    {
+      "name": "09 Get Categories",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:8000/api/categories/"
+      }
+    },
+    {
+      "name": "10 Forbidden Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {"key": "Authorization", "value": "Bearer <non_creator_token>"}
+        ],
+        "url": "http://127.0.0.1:8000/api/products/21/"
+      }
+    }
+  ]
+}
